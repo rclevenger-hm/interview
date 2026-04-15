@@ -6,6 +6,7 @@ const companies = [
   "Meta",
   "Amazon",
   "Oracle",
+  "Cerner / Oracle Health",
   "OpenAI",
   "Netflix",
   "Stripe",
@@ -111,6 +112,11 @@ const companyAlignment: Record<
       emphasis:
         "Large-scale data platform reliability across Oracle databases, Kafka pipelines, and Hadoop-backed operational workflows.",
     },
+    "Cerner / Oracle Health": {
+      recommendedTestId: "devops-cerner-clinical-cutover",
+      emphasis:
+        "Clinical-system reliability, patient-impact triage, and calm operational judgment during healthcare workflow disruption.",
+    },
   },
   security: {
     Cloudflare: {
@@ -147,6 +153,11 @@ const companyAlignment: Record<
       recommendedTestId: "qa-quality-gate-go-no-go",
       emphasis: "Risk framing, stakeholder communication, and hard release decisions.",
     },
+    "Cerner / Oracle Health": {
+      recommendedTestId: "qa-cerner-clinical-regression",
+      emphasis:
+        "Workflow-critical testing, patient-safety awareness, and structured interview reasoning under release pressure.",
+    },
   },
 };
 
@@ -166,9 +177,13 @@ const helpModes: Array<{
   description: string;
 }> = [
   { value: 0, label: "Live", description: "Strict interview mode with no extra help." },
-  { value: 1, label: "Nudge", description: "Light guidance to keep the answer on track." },
+  {
+    value: 1,
+    label: "Nudge",
+    description: "Light interviewer prompts that keep the answer moving without rescuing it.",
+  },
   { value: 2, label: "Coach", description: "Show structure and what to cover next." },
-  { value: 3, label: "Learn", description: "Full learning support for studying the question." },
+  { value: 3, label: "Learn", description: "Full learning support before rerunning the round live." },
 ];
 
 const readinessBands = [
@@ -377,6 +392,16 @@ function App() {
     activeTest?.signal ??
     "Pick a path to unlock round guidance.";
   const helpMode = helpModes.find((mode) => mode.value === helpLevel) ?? helpModes[1];
+  const quickStartCompany =
+    selectedCompany ??
+    selectedDiscipline?.companyFit[0] ??
+    null;
+  const quickStartDisciplineId = selectedDiscipline?.id ?? null;
+  const quickStartDisciplineName = selectedDiscipline?.name ?? null;
+  const quickStartLabel =
+    quickStartCompany && quickStartDisciplineName
+      ? `${quickStartCompany} ${quickStartDisciplineName} flow`
+      : "Choose a discipline to set a quick start";
   const helpContent = buildHelpContent(
     helpLevel,
     activeTest?.prompt ?? "",
@@ -474,6 +499,26 @@ function App() {
 
   const blockAnswerTransfer = (message: string) => {
     setAnswerNotice(message);
+  };
+
+  const activatePresetPathway = (
+    disciplineId: string,
+    company: string,
+    options?: { stageIndex?: number; help?: HelpLevel },
+  ) => {
+    setSelectedId(disciplineId);
+    setSelectedCompany(company);
+    setActiveStage(options?.stageIndex ?? 0);
+    setActiveTestIndex(0);
+    setFeedback(null);
+    setIsRunning(false);
+    setAnswer("");
+    setAnswerNotice("");
+
+    if (typeof options?.help !== "undefined") {
+      setHelpCustomized(true);
+      setHelpLevel(options.help);
+    }
   };
 
   return (
@@ -577,6 +622,24 @@ function App() {
               Start with the role you want, then unlock the company set, graded tests, and mock
               interview flow that best match that hiring track.
             </p>
+          </div>
+          <div className="pathway-utility" aria-label="Quick interview presets">
+            <span className="utility-label">Quick start</span>
+            <button
+              type="button"
+              className="utility-chip"
+              onClick={() =>
+                quickStartDisciplineId && quickStartCompany
+                  ? activatePresetPathway(quickStartDisciplineId, quickStartCompany, {
+                      stageIndex: 0,
+                      help: 1,
+                    })
+                  : null
+              }
+              disabled={!quickStartDisciplineId || !quickStartCompany}
+            >
+              {quickStartLabel}
+            </button>
           </div>
 
           <div className="discipline-tabs" role="tablist" aria-label="Interview disciplines">

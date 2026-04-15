@@ -487,7 +487,7 @@ export const disciplines: Discipline[] = [
     tag: "reliability + oracle stack + incident response",
     summary:
       "Prepare for infrastructure interviews covering reliability engineering, observability, automation strategy, and operational judgment.",
-    companyFit: ["Google", "Datadog", "Cloudflare", "Shopify", "Oracle"],
+    companyFit: ["Google", "Datadog", "Cloudflare", "Shopify", "Oracle", "Cerner / Oracle Health"],
     preparationTracks: [
       "Incident response rehearsals",
       "Infrastructure-as-code design drills",
@@ -628,6 +628,18 @@ export const disciplines: Discipline[] = [
         confirms:
           "Confirmed by public Oracle infrastructure, database operations, and SRE interview patterns that emphasize HA design, failover readiness, and operational discipline.",
       },
+      {
+        id: "devops-cerner-clinical-cutover",
+        title: "Clinical Cutover Stability Review",
+        prompt:
+          "During a Cerner / Oracle Health release window, medication order latency rises after an interface cutover between the EHR, integration engine, and downstream pharmacy systems. Explain how you would triage patient-impact risk, stabilize the platform, and lead the next decisions.",
+        difficulty: "Advanced",
+        signal: "Tests on-the-feet incident reasoning, high-stakes prioritization, and communication under healthcare workflow pressure.",
+        starter:
+          "Start with patient safety, the most critical clinical workflows, and how you would narrow whether the issue sits in the application tier, interface queue, or downstream dependency before expanding the fix.",
+        confirms:
+          "Confirmed by public healthcare platform, Oracle operations, and SRE interview patterns that emphasize production judgment, integration reliability, and incident command.",
+      },
     ],
   },
   {
@@ -749,7 +761,7 @@ export const disciplines: Discipline[] = [
     tag: "quality + automation + release confidence",
     summary:
       "Train for interviews around test strategy, automation depth, failure analysis, and release-readiness judgment across complex systems.",
-    companyFit: ["Microsoft", "Atlassian", "Shopify", "Adobe"],
+    companyFit: ["Microsoft", "Atlassian", "Shopify", "Adobe", "Cerner / Oracle Health"],
     preparationTracks: [
       "Test strategy scenarios",
       "Automation framework design prompts",
@@ -853,6 +865,18 @@ export const disciplines: Discipline[] = [
           "Start by quantifying user impact, detectability, and reversibility, then explain what evidence would change your decision.",
         confirms:
           "Confirmed by senior QA and test engineering interviews that go/no-go judgment and communication are tested explicitly.",
+      },
+      {
+        id: "qa-cerner-clinical-regression",
+        title: "Clinical Workflow Regression Plan",
+        prompt:
+          "Build a test strategy for a Cerner / Oracle Health release that changes patient scheduling, medication order entry, and lab result delivery across desktop workflows, APIs, and integration feeds.",
+        difficulty: "Advanced",
+        signal: "Tests risk-based coverage, patient-safety thinking, and how clearly the candidate reasons through a complex release live.",
+        starter:
+          "Start with the highest-risk clinical workflows, then explain what must be manually explored, what belongs in automation, and what evidence you would need before recommending release.",
+        confirms:
+          "Confirmed by public healthcare QA, enterprise test engineering, and release-readiness interview patterns that evaluate workflow risk, automation depth, and communication.",
       },
     ],
   },

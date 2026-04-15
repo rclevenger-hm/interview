@@ -246,6 +246,42 @@ textarea {
   border-radius: 26px;
 }
 
+.pathway-utility {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
+}
+
+.utility-label {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.utility-chip {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 211, 96, 0.22);
+  background: rgba(255, 211, 96, 0.06);
+  color: var(--title);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.utility-chip:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 211, 96, 0.4);
+}
+
+.utility-chip.selected {
+  border-color: rgba(255, 211, 96, 0.58);
+  background: rgba(255, 211, 96, 0.12);
+}
+
 .challenge-preview h2 {
   margin: 8px 0 12px;
   color: var(--title);
