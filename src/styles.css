@@ -52,7 +52,8 @@ textarea {
 .brand-lockup,
 .workspace-heading,
 .workspace-footer,
-.feedback-panel {
+.feedback-panel,
+.help-header {
   display: flex;
   gap: 16px;
 }
@@ -125,11 +126,10 @@ textarea {
 
 .hero-section {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
-  gap: 28px;
-  align-items: end;
-  padding: 36px 0 56px;
-  min-height: calc(100svh - 104px);
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 40px;
+  align-items: center;
+  padding: 28px 0 40px;
 }
 
 .hero-copy h1,
@@ -145,9 +145,10 @@ textarea {
 }
 
 .hero-copy h1 {
-  font-size: clamp(3rem, 8vw, 6.3rem);
-  line-height: 0.95;
-  max-width: 10ch;
+  font-size: clamp(3rem, 6.4vw, 5.5rem);
+  line-height: 0.98;
+  max-width: 11.5ch;
+  text-wrap: balance;
 }
 
 .hero-copy {
@@ -166,8 +167,8 @@ textarea {
 }
 
 .hero-text {
-  max-width: 36rem;
-  font-size: 1.08rem;
+  max-width: 31rem;
+  font-size: 1.05rem;
   margin: 24px 0 0;
 }
 
@@ -233,7 +234,8 @@ textarea {
 .simulator-layout,
 .blueprint-grid > div,
 .workspace-card,
-.feedback-panel {
+.feedback-panel,
+.simulator-placeholder {
   border: 1px solid var(--line);
   background: var(--panel);
   backdrop-filter: blur(14px);
@@ -249,6 +251,10 @@ textarea {
   color: var(--title);
 }
 
+.challenge-preview.dormant {
+  opacity: 0.92;
+}
+
 .company-grid span,
 .inline-list span,
 .challenge-meta span {
@@ -257,6 +263,34 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.03);
   color: var(--title);
+}
+
+.company-pill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--title);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.company-pill.selected {
+  border-color: rgba(255, 211, 96, 0.55);
+  background: rgba(255, 211, 96, 0.08);
+}
+
+.company-pill:hover {
+  transform: translateY(-2px);
+}
+
+.company-note {
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .challenge-meta {
@@ -276,9 +310,18 @@ textarea {
 }
 
 .section-heading h2 {
-  max-width: 12ch;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.02;
+  max-width: 22ch;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.section-copy {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 .discipline-tabs,
@@ -295,6 +338,10 @@ textarea {
 .discipline-tabs {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
+}
+
+.test-ladder {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .discipline-tab {
@@ -374,6 +421,26 @@ textarea {
   margin-top: 18px;
 }
 
+.simulator-placeholder {
+  margin-top: 18px;
+  padding: 28px;
+  border-radius: 28px;
+  display: grid;
+  gap: 14px;
+}
+
+.simulator-placeholder h3 {
+  margin: 0;
+  color: var(--title);
+}
+
+.simulator-placeholder p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 42rem;
+}
+
 .stage-rail {
   display: grid;
   gap: 10px;
@@ -445,6 +512,82 @@ textarea {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.help-panel {
+  margin-top: 22px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.help-header {
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.help-header h4 {
+  margin: 6px 0 0;
+  color: var(--title);
+}
+
+.help-readout {
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+  color: var(--muted);
+  text-align: right;
+}
+
+.help-scale {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.help-step {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  padding: 12px 10px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--title);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.help-step span {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  font-weight: 700;
+}
+
+.help-step small {
+  color: var(--muted);
+}
+
+.help-step.selected {
+  border-color: rgba(255, 211, 96, 0.55);
+  background: rgba(255, 211, 96, 0.08);
+}
+
+.help-step:hover {
+  transform: translateY(-2px);
+}
+
+.help-block {
+  margin-top: 16px;
+}
+
 .starter-note {
   margin: 12px 0 0;
 }
@@ -499,6 +642,17 @@ textarea {
 .helper-copy {
   margin: 0;
   max-width: 34rem;
+}
+
+.answer-notice {
+  margin: 8px 0 0;
+  color: rgba(255, 211, 96, 0.72);
+  font-size: 0.92rem;
+  min-height: 1.4rem;
+}
+
+.answer-notice.visible {
+  color: var(--accent-soft);
 }
 
 .feedback-panel {
@@ -571,6 +725,7 @@ textarea {
   .simulator-layout,
   .pathway-columns,
   .response-grid,
+  .help-scale,
   .session-toolbar,
   .workspace-grid,
   .feedback-columns,
@@ -582,11 +737,22 @@ textarea {
   .hero-section {
     min-height: auto;
     padding-top: 20px;
+    gap: 24px;
   }
 
   .topbar {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .help-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .help-readout {
+    justify-items: start;
+    text-align: left;
   }
 
   .topnav {
@@ -607,6 +773,8 @@ textarea {
 
   .hero-copy h1 {
     max-width: none;
+    font-size: clamp(2.6rem, 13vw, 4rem);
+    line-height: 0.98;
   }
 
   .signal-card,
@@ -615,7 +783,8 @@ textarea {
   .blueprint-grid > div,
   .stage-rail,
   .workspace-card,
-  .feedback-panel {
+  .feedback-panel,
+  .simulator-placeholder {
     padding: 18px;
   }
 
