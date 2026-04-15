@@ -484,10 +484,10 @@ export const disciplines: Discipline[] = [
   {
     id: "devops",
     name: "DevOps / SRE",
-    tag: "reliability + automation + incident response",
+    tag: "reliability + oracle stack + incident response",
     summary:
       "Prepare for infrastructure interviews covering reliability engineering, observability, automation strategy, and operational judgment.",
-    companyFit: ["Google", "Datadog", "Cloudflare", "Shopify"],
+    companyFit: ["Google", "Datadog", "Cloudflare", "Shopify", "Oracle"],
     preparationTracks: [
       "Incident response rehearsals",
       "Infrastructure-as-code design drills",
@@ -591,6 +591,42 @@ export const disciplines: Discipline[] = [
           "Start by separating user-facing outcomes from internal service metrics, then explain how error budgets would change engineering behavior.",
         confirms:
           "Confirmed by SRE interview norms that senior candidates are tested on SLOs, reliability culture, and long-term systems thinking.",
+      },
+      {
+        id: "devops-hadoop-capacity-recovery",
+        title: "Hadoop Cluster Recovery Plan",
+        prompt:
+          "A critical Hadoop cluster is running out of healthy nodes during a nightly ingestion window, causing YARN queue contention, missed SLAs, and repeated HDFS rebalance failures. Explain how you would stabilize the platform and prevent recurrence.",
+        difficulty: "Core",
+        signal: "Tests distributed data platform operations, capacity planning, and recovery sequencing.",
+        starter:
+          "Start with cluster health, customer-facing batch impact, and how you would separate storage pressure, scheduler contention, and node instability before changing capacity.",
+        confirms:
+          "Confirmed by public DevOps, SRE, and data-platform interview patterns that evaluate Hadoop operations, batch reliability, and production triage.",
+      },
+      {
+        id: "devops-kafka-partition-drift",
+        title: "Kafka Partition Drift Incident",
+        prompt:
+          "After a broker maintenance event, Kafka consumer lag spikes unevenly across partitions, ISR shrinks on key topics, and downstream services begin timing out. Walk through diagnosis, stabilization, and the longer-term guardrails you would add.",
+        difficulty: "Advanced",
+        signal: "Tests streaming infrastructure judgment, incident response under pressure, and failure-isolation thinking.",
+        starter:
+          "Start with business-critical topics, broker and partition health, and how you would decide between traffic shedding, replica repair, and consumer-side mitigation.",
+        confirms:
+          "Confirmed by public platform engineering and SRE interview themes focused on Kafka operations, replication health, and reliability tradeoffs in event-driven systems.",
+      },
+      {
+        id: "devops-oracle-db-failover",
+        title: "Oracle Database Failover Drill",
+        prompt:
+          "A revenue-critical Oracle database environment shows replication delay during peak traffic, backup windows are colliding with OLTP load, and leadership wants a cleaner failover story. Design the runbook, monitoring plan, and architecture changes you would recommend.",
+        difficulty: "Expert",
+        signal: "Tests database reliability strategy, operational runbook design, and Oracle-specific production judgment.",
+        starter:
+          "Start with recovery objectives, primary versus standby health, and how you would monitor replication lag, backup pressure, and failover readiness before proposing architecture changes.",
+        confirms:
+          "Confirmed by public Oracle infrastructure, database operations, and SRE interview patterns that emphasize HA design, failover readiness, and operational discipline.",
       },
     ],
   },

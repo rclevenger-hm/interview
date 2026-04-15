@@ -5,6 +5,7 @@ const companies = [
   "Google",
   "Meta",
   "Amazon",
+  "Oracle",
   "OpenAI",
   "Netflix",
   "Stripe",
@@ -104,6 +105,11 @@ const companyAlignment: Record<
     Shopify: {
       recommendedTestId: "devops-release-guardrails",
       emphasis: "Release safety, blast-radius reduction, and pragmatic automation.",
+    },
+    Oracle: {
+      recommendedTestId: "devops-oracle-db-failover",
+      emphasis:
+        "Large-scale data platform reliability across Oracle databases, Kafka pipelines, and Hadoop-backed operational workflows.",
     },
   },
   security: {
